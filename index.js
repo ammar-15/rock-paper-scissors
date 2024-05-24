@@ -7,7 +7,12 @@ function getCoumputerChoice() {
 }
 
 function getHumanChoice() {
-    const humanChoice = prompt("Please enter rock, paper or scissors").toLowerCase();
+    const outcome = ["rock", "paper", "scissors"];
+    let humanChoice = prompt("Please enter rock, paper or scissors").toLowerCase();
+    while(!outcome.includes(humanChoice)){
+        console.log("Error, please input rock, paper or scissors");
+        humanChoice = prompt("Please enter rock, paper or scissors").toLowerCase();
+    }
     console.log("Your choice: "+humanChoice);
     return humanChoice; 
 }
@@ -36,18 +41,17 @@ function playRound(humanSelection, computerSelection) {
         return loseResult;
     }
 
-    else if (humanSelection === computerSelection){
+    else {
         return "its a tie!";
     }
-    else {
-        return "Error, Please input 'rock', 'paper', or 'scissors'.";
-    }
+
 }
 
 
 function playGame(){
 
     for (let i = 0; i<5; i++){
+        console.log("Round "+(i+1));
         const humanSelection = getHumanChoice();
         const computerSelection = getCoumputerChoice();
         const round = playRound(humanSelection, computerSelection);  
