@@ -10,10 +10,10 @@ function getComputerChoice() {
 // User Input, making sure the correct options are entered by user
 function getHumanChoice() {
     const outcome = ["rock", "paper", "scissors"];
-    let humanChoice = prompt("Press F12, and please enter 5 inputs of rock, paper or scissors").toLowerCase();
+    let humanChoice = prompt("Press F12, and please enter 5 inputs of 'rock', 'paper' or 'scissors'").toLowerCase();
     while(!outcome.includes(humanChoice)){
         console.log("Error, please input rock, paper or scissors");
-        humanChoice = prompt("Press F12, and please enter 5 inputs of rock, paper or scissors").toLowerCase();
+        humanChoice = prompt("Press F12, and please enter 5 inputs of 'rock', 'paper' or 'scissors'").toLowerCase();
     }
     console.log("Your choice: "+humanChoice);
     return humanChoice; 
