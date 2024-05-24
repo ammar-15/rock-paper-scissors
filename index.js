@@ -1,21 +1,24 @@
+
 // Receiving random choices for the computer
-function getCoumputerChoice() {
+function getComputerChoice() {
     const outcome = ["rock", "paper", "scissors"];
     const computerChoice = outcome[Math.floor(Math.random() * outcome.length)];
     console.log("Computer choice: "+computerChoice);
     return computerChoice;
 }
+
 // User Input, making sure the correct options are entered by user
 function getHumanChoice() {
     const outcome = ["rock", "paper", "scissors"];
-    let humanChoice = prompt("Press F12, and please enter rock, paper or scissors").toLowerCase();
+    let humanChoice = prompt("Press F12, and please enter 5 inputs of rock, paper or scissors").toLowerCase();
     while(!outcome.includes(humanChoice)){
         console.log("Error, please input rock, paper or scissors");
-        humanChoice = prompt("Press F12, and please enter rock, paper or scissors").toLowerCase();
+        humanChoice = prompt("Press F12, and please enter 5 inputs of rock, paper or scissors").toLowerCase();
     }
     console.log("Your choice: "+humanChoice);
     return humanChoice; 
 }
+
 // Initializing score
 let humanScore = 0;
 let computerScore = 0;
@@ -41,11 +44,9 @@ function playRound(humanSelection, computerSelection) {
         computerScore++;
         return loseResult;
     }
-
     else {
         return "its a tie!";
     }
-
 }
 
 //Running the game for 5 rounds
@@ -54,7 +55,7 @@ function playGame(){
     for (let i = 0; i<5; i++){
         console.log("Round "+(i+1));
         const humanSelection = getHumanChoice();
-        const computerSelection = getCoumputerChoice();
+        const computerSelection = getComputerChoice();
         const round = playRound(humanSelection, computerSelection);  
         console.log(round);
     }
@@ -66,8 +67,8 @@ function playGame(){
         console.log("You lose the game!");
     }
     else {
-        console.log("Its a tie!")
+        console.log("The game is a tie!")
     }
 }
-// Print all
+// Run the game
 playGame();
