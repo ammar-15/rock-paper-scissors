@@ -3,30 +3,23 @@
 function getComputerChoice() {
     const outcome = ["rock", "paper", "scissors"];
     const computerChoice = outcome[Math.floor(Math.random() * outcome.length)];
-    console.log("Computer choice: "+computerChoice);
     return computerChoice;
 }
 
-// User Input, making sure the correct options are entered by user
-function getHumanChoice() {
-    const outcome = ["rock", "paper", "scissors"];
-    let humanChoice = prompt("Press F12, and please enter 5 inputs of 'rock', 'paper' or 'scissors'").toLowerCase();
-    while(!outcome.includes(humanChoice)){
-        console.log("Error, please input rock, paper or scissors");
-        humanChoice = prompt("Press F12, and please enter 5 inputs of 'rock', 'paper' or 'scissors'").toLowerCase();
-    }
-    console.log("Your choice: "+humanChoice);
-    return humanChoice; 
-}
-
-// Initializing score
 let humanScore = 0;
 let computerScore = 0;
 
+const rockButton = document.querySelector('.rock');
+const paperButton = document.querySelector('.paper');
+const scissorsButton = document.querySelector('.scissors');
+const result = document.querySelector(".result");
+const outcome = document.querySelector(".outcome");
+
+
+
 // Logic for the game
 function playRound(humanSelection, computerSelection) {
-    let winResult = "You win! " + humanSelection + " beats " + computerSelection;
-    let loseResult = "You Lose! " + computerSelection + " beats " + humanSelection;
+    console.log(1, humanSelection, 2, computerSelection);
 
     if (
         (humanSelection === "paper" && computerSelection === "rock") ||
@@ -34,7 +27,9 @@ function playRound(humanSelection, computerSelection) {
         (humanSelection === "rock" && computerSelection === "scissors")
     ) {
         humanScore++;
-        return winResult;
+        const p = document.createElement("p");
+        p.innerText = ('You win! '+humanSelection+' beats '+computerSelection);
+        result.appendChild(p);
     }
     else if (
         (humanSelection === "scissors" && computerSelection === "rock")||
@@ -42,33 +37,53 @@ function playRound(humanSelection, computerSelection) {
         (humanSelection === "paper" && computerSelection === "scissors")
     ) {
         computerScore++;
-        return loseResult;
+        const p = document.createElement("p");
+        p.innerText = ('You lose! '+computerSelection +' beats '+humanSelection);
+        result.appendChild(p);
     }
     else {
-        return "its a tie!";
+        const p = document.createElement("p");
+        p.innerText = "Its a tie!";
+        return result.appendChild(p);
     }
+    
 }
 
-//Running the game for 5 rounds
+//Running the game 
 function playGame(){
 
-    for (let i = 0; i<5; i++){
-        console.log("Round "+(i+1));
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-        const round = playRound(humanSelection, computerSelection);  
-        console.log(round);
-    }
-
+        rockButton.addEventListener('click', () => {
+            const computerSelection = getComputerChoice();
+            const humanSelection = "rock";
+            playRound(humanSelection, computerSelection);
+        })
+        
+        paperButton.addEventListener('click', () => {
+            const computerSelection = getComputerChoice();
+            const humanSelection = "paper";
+            playRound(humanSelection, computerSelection);
+        })
+        
+        scissorsButton.addEventListener('click', () => {
+            const computerSelection = getComputerChoice();
+            const humanSelection = "scissors";
+            playRound(humanSelection, computerSelection);
+        })
+        
     if (humanScore>computerScore){
-        console.log("You win the game!");
+        outcome.innerText = "You win the game!";
+        outcome.append(outcome);
     }
     else if (computerScore>humanScore){
-        console.log("You lose the game!");
+        outcome.innerText = "You lose the game!";
+        outcome.append(outcome);
+
     }
     else {
-        console.log("The game is a tie!")
+        outcome.innerText = "The game is a tie!";
+        outcome.append(outcome);
+
     }
 }
-// Run the game
+//Run the game
 playGame();

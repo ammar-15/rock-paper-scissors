@@ -1,0 +1,7 @@
+.outcome {
+    display: flex;
+    flex: auto;
+    
+    color: aqua;
+    padding-left: 10%;
+}
