@@ -30,8 +30,8 @@ function playRound(humanSelection, computerSelection) {
         score.textContent = ("Your Score: "+humanScore+"; Computer Score: "+computerScore)
         const p = document.createElement("p");
         p.textContent = ('You win! '+humanSelection+' beats '+computerSelection);
-        div.appendChild(score);
         result.appendChild(p);
+        div.appendChild(score);
     }
     else if (
         (humanSelection === "scissors" && computerSelection === "rock")||
@@ -43,8 +43,8 @@ function playRound(humanSelection, computerSelection) {
         score.textContent = ("Your score: "+humanScore+"; Computer Score: "+computerScore)
         const p = document.createElement("p");
         p.textContent = ('You lose! '+computerSelection +' beats '+humanSelection);
-        div.appendChild(score);
         result.appendChild(p);
+        div.appendChild(score);
     }
     else {
         const p = document.createElement("p");
@@ -78,23 +78,39 @@ function playGame(){
         function resultDisplay() {
 
             if (humanScore>computerScore){
-                result.textContent = "You win the game!";
+                result.textContent = "You win the game! The game will restart shortly.";
                 score.append(result);
             }
             else if (computerScore>humanScore){
-                result.textContent = "You lose the game!";
+                result.textContent = "You lose the game! The game will restart shortly.";
                 score.append(result);
     
             }
             else {
-                result.textContent = "The game is a tie!";
+                result.textContent = "The game is a tie! The game will restart shortly.";
                 score.append(result);
     
             }
         }
+
+        function restartGame(){
+            var timeleft = 4;
+            var downloadTimer = setInterval(function(){
+            if(timeleft <= 0){
+                clearInterval(downloadTimer);
+            }
+            document.getElementById("progressBar").value = 4 - timeleft;
+            timeleft -= 1;
+        }, 1000);
+            setInterval(() => {
+                window.location.reload();
+            }, 5000);
+        }
         outcomeButton.addEventListener('click', () => {
-            resultDisplay()
+            resultDisplay();
+            restartGame();
         })
+        
 
         
         
