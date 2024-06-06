@@ -1,3 +1,13 @@
+let humanScore = 0;
+let computerScore = 0;
+
+const div = document.querySelector("div")
+const rockButton = document.querySelector('.rock');
+const paperButton = document.querySelector('.paper');
+const scissorsButton = document.querySelector('.scissors');
+const result = document.querySelector(".result");
+const score = document.querySelector(".score");
+const outcomeButton = document.querySelector(".outcome");
 
 // Receiving random choices for the computer
 function getComputerChoice() {
@@ -6,20 +16,9 @@ function getComputerChoice() {
     return computerChoice;
 }
 
-let humanScore = 0;
-let computerScore = 0;
-
-const rockButton = document.querySelector('.rock');
-const paperButton = document.querySelector('.paper');
-const scissorsButton = document.querySelector('.scissors');
-const result = document.querySelector(".result");
-const outcome = document.querySelector(".outcome");
-
-
-
 // Logic for the game
 function playRound(humanSelection, computerSelection) {
-    console.log(1, humanSelection, 2, computerSelection);
+    console.log(humanSelection, computerSelection);
 
     if (
         (humanSelection === "paper" && computerSelection === "rock") ||
@@ -27,8 +26,11 @@ function playRound(humanSelection, computerSelection) {
         (humanSelection === "rock" && computerSelection === "scissors")
     ) {
         humanScore++;
+        console.log(humanScore, computerScore);
+        score.textContent = ("Your Score: "+humanScore+"; Computer Score: "+computerScore)
         const p = document.createElement("p");
-        p.innerText = ('You win! '+humanSelection+' beats '+computerSelection);
+        p.textContent = ('You win! '+humanSelection+' beats '+computerSelection);
+        div.appendChild(score);
         result.appendChild(p);
     }
     else if (
@@ -37,13 +39,16 @@ function playRound(humanSelection, computerSelection) {
         (humanSelection === "paper" && computerSelection === "scissors")
     ) {
         computerScore++;
+        console.log(humanScore, computerScore);
+        score.textContent = ("Your score: "+humanScore+"; Computer Score: "+computerScore)
         const p = document.createElement("p");
-        p.innerText = ('You lose! '+computerSelection +' beats '+humanSelection);
+        p.textContent = ('You lose! '+computerSelection +' beats '+humanSelection);
+        div.appendChild(score);
         result.appendChild(p);
     }
     else {
         const p = document.createElement("p");
-        p.innerText = "Its a tie!";
+        p.textContent = "Its a tie!";
         return result.appendChild(p);
     }
     
@@ -69,21 +74,31 @@ function playGame(){
             const humanSelection = "scissors";
             playRound(humanSelection, computerSelection);
         })
+
+        function resultDisplay() {
+
+            if (humanScore>computerScore){
+                result.textContent = "You win the game!";
+                score.append(result);
+            }
+            else if (computerScore>humanScore){
+                result.textContent = "You lose the game!";
+                score.append(result);
+    
+            }
+            else {
+                result.textContent = "The game is a tie!";
+                score.append(result);
+    
+            }
+        }
+        outcomeButton.addEventListener('click', () => {
+            resultDisplay()
+        })
+
         
-    if (humanScore>computerScore){
-        outcome.innerText = "You win the game!";
-        outcome.append(outcome);
-    }
-    else if (computerScore>humanScore){
-        outcome.innerText = "You lose the game!";
-        outcome.append(outcome);
-
-    }
-    else {
-        outcome.innerText = "The game is a tie!";
-        outcome.append(outcome);
-
-    }
+        
+    
 }
 //Run the game
 playGame();
