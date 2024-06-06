@@ -58,6 +58,7 @@ function playGame(){
         const computerSelection = getComputerChoice();
         const round = playRound(humanSelection, computerSelection);  
         console.log(round);
+        console.log(humanScore, computerScore);
     }
 
     if (humanScore>computerScore){
