@@ -1,7 +1,86 @@
-.outcome {
-    display: flex;
-    flex: auto;
-    
-    color: aqua;
-    padding-left: 10%;
+body {
+    background-color: rgb(251, 250, 245);
 }
+
+.container {
+    margin: auto;
+    height: 100px;
+    width: 700px;
+    position: relative;
+    border: 1px solid rgb(250, 235, 215);
+    border-radius: 25px;
+    background-color: rgb(250, 235, 215);
+    padding: 10px;
+}
+  
+.rock {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+.paper {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+.scissors {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 70%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.score {
+    top: 135px;
+    width: 700px;
+    position: relative;
+    left: 35%;
+}
+
+.outcome {
+    top: 70px;
+    width: 500px;
+    position: relative;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+progress {
+    margin-top: 10px;
+    width: 400px;
+    position: relative;
+    left: 15%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+/* button{
+    margin-left: 50%;
+    align-items: center;
+}
+.rock {
+    background-color: bisque;
+    border-color: bisque;
+    color: black;
+}
+
+.paper {
+    background-color: bisque;
+    border-color: bisque;
+    color: black;
+}
+
+.scissors {
+    background-color: bisque;
+    border-color: bisque;
+    color: black;
+} */
